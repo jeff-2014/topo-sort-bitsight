@@ -10,8 +10,10 @@ import java.util.*;
 // 2 2 5 3
 // 4 1 3
 // 5 1 1  
-// and so assumes all input ints are separated by a single whitespace character 
-// so split(" ") will return a meaningful array for each line
+//  
+// the input parser assumes all input ints are separated by a 
+// single whitespace character and that  
+// split(" ") will return a meaningful array for each line
 //
 // 3) I am not at all sure that this code satisfies this requirement in the exercise:
 // "To avoid ambiguity in the output, ​
@@ -82,15 +84,8 @@ class Graph
         //make sure we print the evaluation order, not the dependency order
         StringBuilder op = new StringBuilder();
         
-        // Iterator<Integer> res = results.iterator();
-        // while (res.hasNext()) {
-        //     //System.out.format("%d ", res.next());
-        //     op.append(res.next());
-        //     op.append(" ");
-        // }
-        // System.out.println(op.toString());
-
         Integer[] resArr = results.toArray(new Integer[results.size()]);
+
         for (int x : resArr) {
             op.append(String.format("%d ", x));
         }
@@ -135,8 +130,6 @@ private void sortHelper(int node, boolean checked[], Stack<Integer> stack) {
   checked[node] = true;
   Integer i = 0;
 
-  // Recur for all the vertices adjacent to this
-  // vertex
   Iterator<Integer> it = adj[node].iterator();
   while (it.hasNext()) {
     i = it.next();
@@ -149,8 +142,7 @@ private void sortHelper(int node, boolean checked[], Stack<Integer> stack) {
   stack.push(new Integer(node));
 }
 
-// The function to do Topological Sort. It uses
-// recursive topologicalSortUtil()
+// topo sort the dependency graph
 public Stack<Integer> tSort() {
   Stack<Integer> stack = new Stack<Integer>();
 
